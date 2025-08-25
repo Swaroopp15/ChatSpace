@@ -1,0 +1,118 @@
+<div
+  class="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 
+         dark:from-gray-900 dark:via-indigo-950 dark:to-blue-950 p-4 sm:p-6 relative overflow-hidden">
+
+  <!-- Glow Orbs -->
+  <div class="absolute w-72 h-72 sm:w-96 sm:h-96 bg-pink-400/40 rounded-full blur-3xl -top-20 -left-20 animate-pulse"></div>
+  <div class="absolute w-72 h-72 sm:w-96 sm:h-96 bg-cyan-400/40 rounded-full blur-3xl -bottom-20 -right-20 animate-pulse"></div>
+
+  <!-- Main Card -->
+  <div
+    class="relative w-full max-w-sm sm:max-w-md bg-white/10 dark:bg-gray-900/40 backdrop-blur-2xl rounded-3xl shadow-2xl 
+           border border-white/20 p-6 sm:p-8 animate-fade-in 
+           ring-1 ring-transparent bg-clip-padding
+           [background:linear-gradient(#fff,rgba(255,255,255,0.05)) padding-box,
+           linear-gradient(135deg,#ec4899,#8b5cf6,#3b82f6) border-box]">
+
+    <!-- Title -->
+    <h2
+      class="text-2xl sm:text-3xl font-extrabold text-center bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 
+             dark:from-pink-300 dark:via-purple-300 dark:to-indigo-300 bg-clip-text text-transparent mb-6 sm:mb-8">
+      Join a Room
+    </h2>
+
+    <!-- Form -->
+    <form [formGroup]="joinForm" (ngSubmit)="onSubmit()" class="space-y-6">
+
+      <!-- Username -->
+      <div class="relative">
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          placeholder=" "
+          class="peer w-full rounded-xl border border-gray-300/40 dark:border-gray-600/40 bg-white/5 dark:bg-gray-800/40
+                 px-4 pt-5 pb-2 text-white placeholder-transparent
+                 focus:border-pink-400 focus:ring-2 focus:ring-pink-300 focus:outline-none 
+                 transition duration-300"
+        />
+        <label
+          for="username"
+          class="absolute left-4 top-2 text-gray-300 dark:text-gray-400 text-sm transition-all 
+                 peer-placeholder-shown:top-5 peer-placeholder-shown:text-base 
+                 peer-placeholder-shown:text-gray-400 
+                 peer-focus:top-2 peer-focus:text-sm peer-focus:text-pink-300">
+          Your Name
+        </label>
+        <div *ngIf="joinForm.get('username')?.invalid && joinForm.get('username')?.touched"
+             class="mt-2 text-sm text-red-300">
+          Name is required
+        </div>
+      </div>
+
+      <!-- Room ID -->
+      <div class="relative">
+        <input
+          type="text"
+          id="roomId"
+          formControlName="roomId"
+          placeholder=" "
+          class="peer w-full rounded-xl border border-gray-300/40 dark:border-gray-600/40 bg-white/5 dark:bg-gray-800/40
+                 px-4 pt-5 pb-2 text-white placeholder-transparent
+                 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-300 focus:outline-none 
+                 transition duration-300 uppercase"
+        />
+        <label
+          for="roomId"
+          class="absolute left-4 top-2 text-gray-300 dark:text-gray-400 text-sm transition-all 
+                 peer-placeholder-shown:top-5 peer-placeholder-shown:text-base 
+                 peer-placeholder-shown:text-gray-400 
+                 peer-focus:top-2 peer-focus:text-sm peer-focus:text-indigo-300">
+          Room ID
+        </label>
+        <div *ngIf="joinForm.get('roomId')?.invalid && joinForm.get('roomId')?.touched"
+             class="mt-2 text-sm text-red-300">
+          Room ID is required
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        [disabled]="joinForm.invalid || isLoading"
+        class="group w-full px-6 py-3 rounded-2xl font-semibold text-base sm:text-lg text-white 
+               bg-gradient-to-r from-indigo-500 to-purple-600 shadow-lg 
+               disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden
+               hover:scale-105 hover:shadow-indigo-400/50 
+               transition transform duration-300 flex items-center justify-center gap-2">
+
+        <!-- Hover overlay -->
+        <span class="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition duration-300"></span>
+
+        <!-- Normal text OR loading -->
+        <ng-container *ngIf="!isLoading; else loadingTpl">
+          Join Room
+        </ng-container>
+
+        <ng-template #loadingTpl>
+          <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+          </svg>
+          <span>Joining…</span>
+        </ng-template>
+      </button>
+    </form>
+  </div>
+</div>
+
+<style>
+  /* Smooth fade-in animation */
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-in-out;
+  }
+</style>

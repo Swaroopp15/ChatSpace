@@ -1,0 +1,16 @@
+.connection-status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+.connection-status.connected {
+  background-color: #4caf50;
+  color: white;
+}
+
+.connection-status.disconnected {
+  background-color: #f44336;
+  color: white;
+}

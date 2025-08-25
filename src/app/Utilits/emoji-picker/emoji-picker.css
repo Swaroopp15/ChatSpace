@@ -1,0 +1,38 @@
+/* components/emoji-picker/emoji-picker.component.css
+.emoji-picker {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 300px;
+}
+
+.emoji-category h4 {
+  margin: 10px 0 5px 0;
+  color: #666;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+}
+
+.emoji-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.emoji-button:hover {
+  background-color: #f0f0f0;
+} */

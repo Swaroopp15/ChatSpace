@@ -1,0 +1,53 @@
+<div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col">
+  
+  <!-- Header -->
+  <div class="flex items-center justify-between bg-violet-600 text-white px-4 py-3">
+    <h2 class="text-lg font-semibold truncate">{{ data.name }}</h2>
+    <button (click)="closeDialog()" class="p-2 rounded-full hover:bg-violet-500 transition">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  
+  <!-- Content -->
+  <div class="flex-1 flex items-center justify-center bg-gray-50 p-6">
+    
+    <!-- Image -->
+    <ng-container *ngIf="isImage(data.ext)">
+      <img [src]="data.url" [alt]="data.name" class="max-h-[500px] max-w-full rounded-lg shadow-md object-contain">
+    </ng-container>
+    
+    <!-- Video -->
+    <ng-container *ngIf="isVideo(data.ext)">
+      <video controls class="max-h-[500px] max-w-full rounded-lg shadow-md">
+        <source [src]="data.url" [type]="'video/' + data.ext">
+        Your browser does not support the video tag.
+      </video>
+    </ng-container>
+    
+    <!-- Audio -->
+    <ng-container *ngIf="isAudio(data.ext)">
+      <audio controls class="w-full max-w-md">
+        <source [src]="data.url" [type]="'audio/' + data.ext">
+        Your browser does not support the audio element.
+      </audio>
+    </ng-container>
+    
+    <!-- Other File -->
+    <ng-container *ngIf="!isImage(data.ext) && !isVideo(data.ext) && !isAudio(data.ext)">
+      <div class="flex flex-col items-center space-y-3">
+        <mat-icon class="text-gray-500 text-5xl">description</mat-icon>
+        <p class="text-gray-700 font-medium">File: {{ data.name }}</p>
+        <a [href]="data.url" target="_blank">
+          <button class="bg-violet-600 text-white px-4 py-2 rounded-lg shadow hover:bg-violet-700 transition">
+            Download File
+          </button>
+        </a>
+      </div>
+    </ng-container>
+  </div>
+  
+  <!-- Footer -->
+  <div class="bg-gray-100 text-sm text-gray-600 px-4 py-2 border-t">
+    <p>Shared by: <span class="font-medium">{{ data.username }}</span> at {{ data.time }}</p>
+  </div>
+</div>
