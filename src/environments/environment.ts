@@ -1,4 +1,4 @@
 export const environment = {
-    production: false,
-    backendUrl: 'http://localhost:5000'
+    production: true,
+    backendUrl: 'https://chatspace-backend-uhnn.onrender.com/'
 };
